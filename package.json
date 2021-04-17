@@ -1,0 +1,34 @@
+{
+  "name": "excel-js",
+  "version": "1.0.0",
+  "description": "Excel JS",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Detlolka/Excel.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Alexey Grinchuk <detlolka@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Detlolka/Excel/issues"
+  },
+  "homepage": "https://github.com/Detlolka/Excel#readme",
+  "private": true,
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^8.1.1",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.5.0",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  }
+}
