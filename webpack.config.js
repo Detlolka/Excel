@@ -4,6 +4,12 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const isProd = process.env.NODE_ENV === 'production';
+const isDev = !isProd;
+
+const filename = format => isDev ? `bundle.${format}` : `bundle.[hash].${format}`;
+
+
 
 module.exports = {
   // параметр отвечает за то, где лежат все исходники (src)
@@ -11,10 +17,10 @@ module.exports = {
   // мод по умолчанию
   mode: 'development',
   // точка входа в исходные файлы
-  entry: './index.js',
+  entry: ['@babel/polyfill','./index.js'],
   // точка выхода, это обязательно объект
   output: {
-    filename: 'bundle.[hash].js',
+    filename: filename('js'),
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -26,13 +32,22 @@ module.exports = {
       '@core': path.resolve(__dirname, 'src/core')
     }
   },
+  devtool: isDev ? 'source-map' : false,
+  devServer: {
+    port: 3000,
+    hot: isDev
+  },
   plugins: [
     // плагин для очистки папки перед сборкой
     new CleanWebpackPlugin(),
     // плагин для работы с HTML
     new HTMLWebpackPlugin({
       template: 'index.html',
-      inject: 'body'
+      inject: 'body',
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd
+      }
     }),
     // плагин для транспортировки файлов from - to
     new CopyWebpackPlugin({
@@ -45,7 +60,29 @@ module.exports = {
     }),
     // плагин для выноса CSS из JS в отдельный файл
     new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css'
+      filename: filename('css')
     }),
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
 }
