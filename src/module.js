@@ -1,6 +1,6 @@
 console.log('Module');
-const get = async function() {
+async function start() {
   return await Promise.resolve().
       then(console.log('MOS'));
-};
-get();
+}
+start();
