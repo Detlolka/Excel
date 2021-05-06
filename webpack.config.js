@@ -8,7 +8,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
 
 const filename = format => isDev ?
- `bundle.${format}` : `bundle.[hash].${format}`;
+ `bundle.${format}` : `bundle.[contenthash].${format}`;
 
 // если в dev-режиме добавляет eslint
 const jsLoaders = () => {
