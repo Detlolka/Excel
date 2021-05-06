@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import '~normalize.css';
 
-@import './header/header.scss';
-@import './toolbar/toolbar.scss';
-@import './formula/formula.scss';
-@import './table/table.scss';
+@import './excel/excel.scss';
+@import './excel/header/header.scss';
+@import './excel/toolbar/toolbar.scss';
+@import './excel/formula/formula.scss';
+@import './excel/table/table.scss';
+@import './dashboard/dashboard.scss';
 
 * {
   margin: 0;
@@ -17,10 +19,3 @@ body {
   font-size: 12px;
 }
 
-.excel {
-  position: relative;
-  color: #888;
-  height: 100%;
-  max-width: 100%;
-  font-size: .8rem;
-}
