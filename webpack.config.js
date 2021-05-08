@@ -26,7 +26,8 @@ const jsLoaders = () => {
               targets: '> 0.25%, not dead'
             }
           ]
-        ]
+        ],
+        plugins: ['@babel/plugin-proposal-class-properties']
       }
     }
   ];
