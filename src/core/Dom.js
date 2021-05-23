@@ -12,10 +12,16 @@ class Dom {
     }
     return this.$el.outerHTML.trim();
   }
+
   clear() {
     this.html('');
     return this;
   }
+
+  on(eventType, callback) {
+    this.$el.addEventListener(eventType, callback);
+  }
+
   // Element
   append(node) {
     if (node instanceof Dom) {
