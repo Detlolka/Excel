@@ -41,7 +41,7 @@ export function createTable(rowsCount = 20) {
       .map(toColumn)
       .join('');
 
-  const ceil = new Array(colsCount)
+  const cells = new Array(colsCount)
       .fill('')
       .map(toCell)
       .join('');
@@ -49,7 +49,7 @@ export function createTable(rowsCount = 20) {
   rows.push(createRow(cols));
 
   for (let i = 0; i < rowsCount; i++) {
-    rows.push(createRow(ceil, i + 1));
+    rows.push(createRow(cells, i + 1));
   }
 
   return rows.join('');
