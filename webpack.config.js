@@ -26,7 +26,8 @@ const jsLoaders = () => {
               targets: '> 0.25%, not dead'
             }
           ]
-        ]
+        ],
+        plugins: ['@babel/plugin-proposal-class-properties']
       }
     }
   ];
@@ -55,7 +56,8 @@ module.exports = {
     // параметр для сокращения относительного пути
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@core': path.resolve(__dirname, 'src/core')
+      '@core': path.resolve(__dirname, 'src/core'),
+      '@components': path.resolve(__dirname, 'src/components')
     },
   },
   devtool: isDev ? 'source-map' : false,
