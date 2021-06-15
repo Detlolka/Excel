@@ -68,9 +68,10 @@
     right: 0;
     opacity: 0;       
 
-    &:hover {
-      opacity: 1;    
-    }  
+    &:hover, &:active {
+      opacity: 1;        
+    }
+      
   } 
 
   .col-resize {
@@ -79,7 +80,10 @@
 
     &:hover {      
       cursor: col-resize;
-    }    
+    }
+    &:active {
+      height: 100vh;
+    }            
   }
 
   .row-resize {

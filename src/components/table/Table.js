@@ -21,6 +21,8 @@ export class Table extends ExcelComponent {
       const coords = $parent.getCords();
 
       document.onmousemove = e => {
+        e.preventDefault();
+        document.body.style.cursor = 'col-resize';
         const delta = e.pageX - coords.right;
         const value = coords.width + delta;
         $parent.$el.style.width = value + 'px';
@@ -28,6 +30,7 @@ export class Table extends ExcelComponent {
 
       document.onmouseup = () => {
         document.onmousemove = null;
+        document.body.style.cursor = 'auto';
       };
     }
   }
