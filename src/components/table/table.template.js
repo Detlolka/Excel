@@ -4,17 +4,15 @@ const CODES ={
 };
 
 function toCell(_, index) {
-  const number = index + 1;
   return `
-  <div class="cell" data-num="${number}"contenteditable>
+  <div class="cell" data-num="${index + 1}" contenteditable>
   </div>
   `;
 }
 
 function toColumn(col, index) {
-  const number = index + 1;
   return `
-  <div class="column" data-type="resizable" data-num=${number}>
+  <div class="column" data-type="resizable" data-num="${index + 1}">
     ${col}
     <div class="col-resize" data-resize="col"></div>
   </div>
