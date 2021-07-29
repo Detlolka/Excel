@@ -10,12 +10,11 @@ function toChar(_, index) {
 
 function toCell(row) {
   return function(_, index) {
-    const rowNum = row + 1;
-    const id = toChar(_, index) + rowNum;
     return `
     <div class="cell"
       data-num="${index + 1}"
-      data-id ="${id}"
+      data-id ="${row}:${index}"
+      data-type="cell"
       contenteditable>
     </div>
   `;

@@ -70,6 +70,17 @@ class Dom {
     this.$el.classList.add(className);
   }
 
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':');
+      return {
+        row: +parsed[0],
+        col: +parsed[1]
+      };
+    }
+    return this.data.id;
+  }
+
   removeClass(className) {
     this.$el.classList.remove(className);
   }
