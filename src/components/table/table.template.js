@@ -1,4 +1,6 @@
-const CODES ={
+
+const CODES =
+{
   A: 65,
   Z: 90
 };
@@ -64,3 +66,4 @@ export function createTable(rowsCount = 20) {
 
   return rows.join('');
 }
+

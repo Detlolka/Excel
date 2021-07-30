@@ -13,6 +13,10 @@ class Dom {
     return this.$el.outerHTML.trim();
   }
 
+  text(text) {
+    this.$el.textContent = text;
+  }
+
   clear() {
     this.html('');
     return this;
@@ -66,9 +70,6 @@ class Dom {
         });
   }
 
-  addClass(className) {
-    this.$el.classList.add(className);
-  }
 
   id(parse) {
     if (parse) {
@@ -79,6 +80,19 @@ class Dom {
       };
     }
     return this.data.id;
+  }
+
+  lastId(parse) {
+    return parse[parse.length - 1].dataset.id.split(':');
+  }
+
+  focus() {
+    this.$el.focus();
+    return this;
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className);
   }
 
   removeClass(className) {
