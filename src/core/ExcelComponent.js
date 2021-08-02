@@ -21,6 +21,7 @@ export class ExcelComponent extends DomListener {
     this.emitter.emit(evt, ...args);
   }
 
+  // Подписываемся на события
   $on(evt, fn) {
     const unsub =this.emitter.subscribe(evt, fn);
     this.unsubscribers.push(unsub);
