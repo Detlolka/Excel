@@ -19,6 +19,7 @@ export function resizeHandler($root, evt) {
       const delta = e.pageX - coords.right;
       value = coords.width + delta;
       if (value <= 40) {
+        value = 40;
         return;
       }
       $resizer.css({right: -delta + 'px'});
@@ -27,6 +28,7 @@ export function resizeHandler($root, evt) {
       const delta = e.pageY - coords.bottom;
       value = coords.height + delta;
       if (value <= 20) {
+        value = 20;
         return;
       }
       $resizer.css({bottom: -delta + 'px'});
