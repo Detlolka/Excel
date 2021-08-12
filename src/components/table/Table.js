@@ -34,6 +34,12 @@ export class Table extends ExcelComponent {
     this.selection = new TableSelection();
   }
 
+  selectCell($cell) {
+    this.selection.select($cell);
+    this.$emit('table:select', $cell);
+  }
+
+
   init() {
     super.init();
     this.maxValues();
@@ -45,16 +51,24 @@ export class Table extends ExcelComponent {
     this.$on('formula:done', () => {
       this.selection.current.focus();
     });
+
+    this.$subscribe(state => {
+      console.log('TableState', state);
+    });
   }
 
-  selectCell($cell) {
-    this.selection.select($cell);
-    this.$emit('table:select', $cell);
+  async resizeTable(evt) {
+    try {
+      const data = await resizeHandler(this.$root, evt);
+      this.$dispatch({type: 'TABLE_RESIZE', data});
+    } catch (e) {
+      console.warn('Resize error', e.message);
+    }
   }
 
   onMousedown(evt) {
     if (shouldResize(evt)) {
-      resizeHandler(this.$root, evt);
+      this.resizeTable(evt);
     } else if (shouldId(evt)) {
       const $target = $(evt.target);
       if (evt.shiftKey) {
@@ -63,6 +77,7 @@ export class Table extends ExcelComponent {
         this.selection.selectGroup($cells);
       } else {
         this.selection.select($target);
+        this.selectCell($target);
       }
     }
   }

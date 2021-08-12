@@ -5,7 +5,6 @@ export class TableSelection {
     this.current = null;
   }
 
-  // $el instanceof DOM === true
   select($el) {
     this.removeSelect();
     this.group.push($el);
